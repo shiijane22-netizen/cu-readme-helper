@@ -1,0 +1,223 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@import url('https://fonts.googleapis.com/css2?family=Lato:wght@400;700&family=Montserrat:wght@400;600;700&display=swap');
+
+@layer base {
+  :root {
+    /* MUTCU Brand Colors */
+    --mutcu-navy: 240 100% 12%;
+    --mutcu-orange: 36 100% 50%;
+    --mutcu-red: 355 100% 54%;
+    --mutcu-teal: 176 61% 51%;
+
+    /* Shadcn semantic tokens */
+    --background: 210 20% 98%;
+    --foreground: 240 10% 3.9%;
+
+    --card: 0 0% 100%;
+    --card-foreground: 240 10% 3.9%;
+
+    --popover: 0 0% 100%;
+    --popover-foreground: 240 10% 3.9%;
+
+    --primary: 240 100% 12%;
+    --primary-foreground: 0 0% 98%;
+
+    --secondary: 36 100% 50%;
+    --secondary-foreground: 240 100% 12%;
+
+    --muted: 210 40% 96.1%;
+    --muted-foreground: 215.4 16.3% 46.9%;
+
+    --accent: 176 61% 51%;
+    --accent-foreground: 240 100% 12%;
+
+    --destructive: 355 100% 54%;
+    --destructive-foreground: 0 0% 98%;
+
+    --border: 214.3 31.8% 91.4%;
+    --input: 214.3 31.8% 91.4%;
+    --ring: 240 100% 12%;
+
+    --radius: 0.5rem;
+
+    --chart-1: 12 76% 61%;
+    --chart-2: 173 58% 39%;
+    --chart-3: 197 37% 24%;
+    --chart-4: 43 74% 66%;
+    --chart-5: 27 87% 67%;
+
+    --sidebar-background: 0 0% 98%;
+    --sidebar-foreground: 240 5.3% 26.1%;
+    --sidebar-primary: 240 5.9% 10%;
+    --sidebar-primary-foreground: 0 0% 98%;
+    --sidebar-accent: 240 4.8% 95.9%;
+    --sidebar-accent-foreground: 240 5.9% 10%;
+    --sidebar-border: 220 13% 91%;
+    --sidebar-ring: 217.2 91.2% 59.8%;
+  }
+
+  .dark {
+    --background: 240 10% 3.9%;
+    --foreground: 0 0% 98%;
+
+    --card: 240 10% 3.9%;
+    --card-foreground: 0 0% 98%;
+
+    --popover: 240 10% 3.9%;
+    --popover-foreground: 0 0% 98%;
+
+    --primary: 36 100% 50%;
+    --primary-foreground: 240 100% 12%;
+
+    --secondary: 240 3.7% 15.9%;
+    --secondary-foreground: 0 0% 98%;
+
+    --muted: 240 3.7% 15.9%;
+    --muted-foreground: 240 5% 64.9%;
+
+    --accent: 176 61% 51%;
+    --accent-foreground: 0 0% 98%;
+
+    --destructive: 0 62.8% 30.6%;
+    --destructive-foreground: 0 0% 98%;
+
+    --border: 240 3.7% 15.9%;
+    --input: 240 3.7% 15.9%;
+    --ring: 36 100% 50%;
+
+    --sidebar-background: 240 5.9% 10%;
+    --sidebar-foreground: 240 4.8% 95.9%;
+    --sidebar-primary: 224.3 76.3% 48%;
+    --sidebar-primary-foreground: 0 0% 100%;
+    --sidebar-accent: 240 3.7% 15.9%;
+    --sidebar-accent-foreground: 240 4.8% 95.9%;
+    --sidebar-border: 240 3.7% 15.9%;
+    --sidebar-ring: 217.2 91.2% 59.8%;
+  }
+
+  * {
+    @apply border-border;
+  }
+
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    @apply bg-background text-foreground font-body overflow-x-hidden antialiased;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    @apply font-heading font-bold text-primary;
+  }
+}
+
+@layer components {
+  /* Section title with underline */
+  .mutcu-section-title {
+    @apply text-3xl md:text-4xl font-bold mb-6 pb-4 relative text-center text-primary uppercase tracking-wide;
+  }
+
+  .mutcu-section-title::after {
+    content: "";
+    @apply absolute left-1/2 -translate-x-1/2 w-24 h-1.5 rounded-full bg-secondary;
+    bottom: 0;
+  }
+
+  /* Card shadows */
+  .shadow-mutcu-card {
+    box-shadow: 0 4px 20px -4px hsl(var(--mutcu-navy) / 0.1);
+  }
+
+  .shadow-mutcu-card-lg {
+    box-shadow: 0 8px 30px -6px hsl(var(--mutcu-navy) / 0.15);
+  }
+
+  /* Hero gradient overlay */
+  .hero-overlay {
+    @apply absolute inset-0 bg-gradient-to-b from-primary/70 via-primary/60 to-primary/80;
+  }
+
+  /* Animated underline for nav links */
+  .nav-link-underline {
+    @apply relative after:absolute after:left-0 after:-bottom-1 after:h-0.5 after:w-0 after:bg-secondary after:transition-all hover:after:w-full;
+  }
+
+  /* Value card hover effect */
+  .value-card {
+    @apply flex flex-col items-center rounded-2xl border border-white/20 bg-white/10 p-6 text-center shadow-lg backdrop-blur-sm transition-all hover:-translate-y-2 hover:bg-white/20;
+  }
+
+  /* Ministry card */
+  .ministry-card {
+    @apply flex h-full flex-col overflow-hidden rounded-2xl bg-card shadow-mutcu-card transition-all hover:-translate-y-2 hover:shadow-mutcu-card-lg;
+  }
+
+  /* Gallery item hover overlay */
+  .gallery-overlay {
+    @apply absolute inset-0 flex items-center justify-center bg-primary/70 opacity-0 transition-opacity;
+  }
+
+  .gallery-item:hover .gallery-overlay {
+    @apply opacity-100;
+  }
+
+  /* Button variants */
+  .btn-mutcu-primary {
+    @apply bg-secondary hover:bg-secondary/90 text-primary font-heading uppercase shadow-lg shadow-black/20 transition-all hover:scale-105;
+  }
+
+  .btn-mutcu-outline {
+    @apply border-2 border-white text-white hover:bg-white/10 font-heading uppercase transition-all;
+  }
+}
+
+@layer utilities {
+  /* Animation utilities */
+  .animate-fade-in {
+    animation: fadeIn 0.6s ease-out forwards;
+  }
+
+  .animate-fade-in-up {
+    animation: fadeInUp 0.6s ease-out forwards;
+  }
+
+  .animate-scale-in {
+    animation: scaleIn 0.5s ease-out forwards;
+  }
+
+  @keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+  }
+
+  @keyframes fadeInUp {
+    from { 
+      opacity: 0;
+      transform: translateY(20px);
+    }
+    to { 
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  @keyframes scaleIn {
+    from { 
+      opacity: 0;
+      transform: scale(0.95);
+    }
+    to { 
+      opacity: 1;
+      transform: scale(1);
+    }
+  }
+
+  /* Gradient text utility */
+  .text-gradient-mutcu {
+    @apply bg-gradient-to-r from-secondary to-accent bg-clip-text text-transparent;
+  }
+}
