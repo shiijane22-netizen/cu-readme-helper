@@ -1,0 +1,1 @@
+build AdminResourcesPage and AdminGalleryPage
