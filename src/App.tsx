@@ -26,18 +26,19 @@ import BibleStudyDiscipleshipPage from "./pages/ministries/BibleStudyDiscipleshi
 import MissionsEvangelismPage from "./pages/ministries/MissionsEvangelismPage";
 import CreativeArtsPage from "./pages/ministries/CreativeArtsPage";
 import PrayerMinistryPage from "./pages/ministries/PrayerMinistryPage";
+import HospitalityMinistryPage from "./pages/ministries/HospitalityMinistryPage";
+import WelfareCommitteePage from "./pages/ministries/WelfareCommitteePage";
+import TechnicalDepartmentPage from "./pages/ministries/TechnicalDepartmentPage";
+import RmcPage from "./pages/ministries/RmcPage";
 
 // Committee Pages
 import ChairmanPage from "./pages/committees/ChairmanPage";
 
 const queryClient = new QueryClient();
 
-// Protected Route Wrapper
 const RequireAdmin: React.FC<{ children: React.ReactNode }> = ({ children }) => {
   const token = useAuthStore((s) => s.token);
-  if (!token) {
-    return <Navigate to="/admin/login" replace />;
-  }
+  if (!token) return <Navigate to="/admin/login" replace />;
   return <>{children}</>;
 };
 
@@ -48,7 +49,6 @@ const App = () => (
       <Sonner />
       <BrowserRouter>
         <Routes>
-          {/* Public Routes */}
           <Route path="/" element={<HomePage />} />
           <Route path="/about" element={<AboutPage />} />
           <Route path="/ministries" element={<MinistriesPage />} />
@@ -58,28 +58,24 @@ const App = () => (
           <Route path="/contact" element={<ContactPage />} />
           <Route path="/ministries/join" element={<JoinMinistryPage />} />
 
-          {/* Ministry Detail Pages */}
+          {/* Ministry Pages */}
           <Route path="/ministries/music" element={<MusicMinistryPage />} />
           <Route path="/ministries/bible-study-discipleship" element={<BibleStudyDiscipleshipPage />} />
           <Route path="/ministries/missions-evangelism" element={<MissionsEvangelismPage />} />
           <Route path="/ministries/creative-arts" element={<CreativeArtsPage />} />
           <Route path="/ministries/prayer" element={<PrayerMinistryPage />} />
+          <Route path="/ministries/hospitality" element={<HospitalityMinistryPage />} />
+          <Route path="/ministries/welfare-committee" element={<WelfareCommitteePage />} />
+          <Route path="/ministries/technical-department" element={<TechnicalDepartmentPage />} />
+          <Route path="/ministries/rmc" element={<RmcPage />} />
 
           {/* Committee Pages */}
           <Route path="/committees/chairman" element={<ChairmanPage />} />
 
           {/* Admin Routes */}
           <Route path="/admin/login" element={<AdminLoginPage />} />
-          <Route
-            path="/admin"
-            element={
-              <RequireAdmin>
-                <AdminDashboardPage />
-              </RequireAdmin>
-            }
-          />
+          <Route path="/admin" element={<RequireAdmin><AdminDashboardPage /></RequireAdmin>} />
 
-          {/* 404 Fallback */}
           <Route path="*" element={<NotFound />} />
         </Routes>
       </BrowserRouter>
